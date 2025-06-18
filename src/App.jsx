@@ -29,13 +29,18 @@ const App = () => {
     value={searchTerm}
     onChange={(e)=>dispatch(setSearchTerm(e.target.value))} />
     </div>
-      <div className="item-container">
         <ul>
-        {filteredProduct.map((item)=>(
-          <li key={item.id} >{item.title}</li>
-        ))}
-        </ul>    
+      <div className="item-container">
+        {filteredProduct.length === 0 ? (
+          <p>No product found for "{searchTerm}"</p>
+        ) : (filteredProduct.map((item)=>(
+          <div key={item.id} className='product-container' >
+            <img src={item.images[0]} alt={item.title} />
+            <p>{item.title}</p>
+          </div>
+        )))}
         </div>  
+        </ul>    
     </>
   )
 }
